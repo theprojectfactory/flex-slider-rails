@@ -1,5 +1,5 @@
 /*
- * jQuery FlexSlider v2.6.4
+ * jQuery FlexSlider v2.7.0
  * Copyright 2012 WooThemes
  * Contributing Author: Tyler Smith
  */
@@ -1113,7 +1113,7 @@
     // Usability features
     pauseOnAction: true,            //Boolean: Pause the slideshow when interacting with control elements, highly recommended.
     pauseOnHover: false,            //Boolean: Pause the slideshow when hovering over slider, then resume when no longer hovering
-    pauseInvisible: true,   		//{NEW} Boolean: Pause the slideshow when tab is invisible, resume when visible. Provides better UX, lower CPU usage.
+    pauseInvisible: true,       //{NEW} Boolean: Pause the slideshow when tab is invisible, resume when visible. Provides better UX, lower CPU usage.
     useCSS: true,                   //{NEW} Boolean: Slider will use CSS3 transitions if available
     touch: true,                    //{NEW} Boolean: Allow touch swipe navigation of the slider on touch-enabled devices
     video: false,                   //{NEW} Boolean: If using video in the slider, will prevent CSS3 3D Transforms to avoid graphical glitches
@@ -1176,7 +1176,12 @@
       });
     } else {
       // Helper strings to quickly perform functions on the slider
-      var $slider = $(this).data('flexslider');
+      if(this.length) {
+        var $slider = $(this).data('flexslider');
+      } else {
+        var $slider = $(this.context).closest('.flexslider').data('flexslider');
+      }
+
       switch (options) {
         case "play": $slider.play(); break;
         case "pause": $slider.pause(); break;
